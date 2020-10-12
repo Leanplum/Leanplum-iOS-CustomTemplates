@@ -7,14 +7,33 @@ This project illustrates how to define a new message/action template in Leanplum
 Go to the respective project folder and run:
 ```pod install```
 
-Sync the new message templates to the Dashboard from Messages:
+Sync the new message templates to the Dashboard from Messages:  
 ![Sync Message templates][2]
 
 ## Documentation
 
 Full Documentation can be found in [Leanplum Docs][1]
 
+## Setup
 
+Once the templates are synced, they will appear in the Campaign Composer under Custom In-App section:   
+![Custom In-App section][3]
+
+### 3-button Alert
+
+Composer:
+![Alert Composer][4]
+Message:
+![Alert Message][5]
+Results:
+![Alert Results][6]
+Milestones:
+![Alert Milestones][7]
 
 [1]: https://docs.leanplum.com/v1/reference#section-i-os-custom-templates
 [2]: /Assets/sync.png
+[3]: /Assets/templates_icons.png
+[4]: /Assets/alert_composer.png
+[5]: /Assets/alert_message.png
+[6]: /Assets/alert_results.png
+[7]: /Assets/alert_milestones.png
