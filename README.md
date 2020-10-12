@@ -24,7 +24,7 @@ Once the templates are synced, they will appear in the Campaign Composer under C
 Composer:  
 ![Alert Composer][4]  
 Message:  
-![Alert Message][5]  
+<img src="/Assets/alert_template.png" alt="Alert Message" height="800px">
 Results:  
 ![Alert Results][6]  
 Milestones:  
@@ -35,7 +35,7 @@ Milestones:
 Composer:  
 ![Slider Composer][8]  
 Message:  
-![Slider Message][9]  
+<img src="/Assets/slider.gif" alt="Slider Message" height="900px">
 Milestones:  
 ![Slider Milestones][10]  
 
