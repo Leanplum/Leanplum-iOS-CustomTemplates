@@ -21,19 +21,34 @@ Once the templates are synced, they will appear in the Campaign Composer under C
 
 ### 3-button Alert
 
-Composer:
+Composer:  
 ![Alert Composer][4]
-Message:
+Message:  
 ![Alert Message][5]
-Results:
+Results:  
 ![Alert Results][6]
-Milestones:
+Milestones:  
 ![Alert Milestones][7]
+
+### Slider
+
+Composer:  
+![Slider Composer][8]
+Message:  
+![Slider Message][9]
+Results:  
+![Slider Results][10]
+Milestones:  
+![Slider Milestones][11]
 
 [1]: https://docs.leanplum.com/v1/reference#section-i-os-custom-templates
 [2]: /Assets/sync.png
 [3]: /Assets/templates_icons.png
 [4]: /Assets/alert_composer.png
-[5]: /Assets/alert_message.png
+[5]: /Assets/alert_template.png
 [6]: /Assets/alert_results.png
 [7]: /Assets/alert_milestones.png
+[8]: /Assets/slider_composer.png
+[9]: /Assets/slider.gif
+[10]: /Assets/slider_results.png
+[11]: /Assets/slider_milestones.png
