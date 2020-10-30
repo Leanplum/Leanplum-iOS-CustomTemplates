@@ -1,7 +1,11 @@
 # Leanplum-iOS-CustomTemplates
 Custom message templates example for iOS
 
-This project illustrates how to define a new message/action template in Leanplum. The samples include defining a 3-button Alert message and a Slider (Pager) template. They are available in both Swift and Objective-C.
+This project illustrates how to define a new message/action template in Leanplum. The samples include defining a 3-button Alert message and a Slider (Pager) template. They are available in both **Swift** and **Objective-C**.
+
+### <a name="#Slider">Slider (Pager)</a>
+### [3-button Alert](#3-button-Alert)
+### [Ads Tracking templates](#Ads-Tracking)
 
 ## Installation
 Go to the respective project folder and run:
@@ -38,6 +42,8 @@ Message:
 <img src="/Assets/slider.gif" alt="Slider Message" height="900px">  
 Milestones:  
 ![Slider Milestones][10]  
+
+### Ads Tracking
 
 [1]: https://docs.leanplum.com/v1/reference#section-i-os-custom-templates
 [2]: /Assets/sync.png
