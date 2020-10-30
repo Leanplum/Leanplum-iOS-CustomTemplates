@@ -10,6 +10,8 @@
 #import "Leanplum.h"
 #import "AlertWith3Buttons.h"
 #import "SliderMessageTemplate.h"
+#import "LPAdsAskToAskMessageTemplate.h"
+#import "LPAdsTrackingActionTemplate.h"
 
 @interface AppDelegate ()
 
@@ -27,6 +29,8 @@
             
     [AlertWith3Buttons defineAction];
     [SliderMessageTemplate defineAction];
+    [LPAdsAskToAskMessageTemplate defineAction];
+    [LPAdsTrackingActionTemplate defineAction];
             
     [Leanplum setVerboseLoggingInDevelopmentMode:YES];
     [Leanplum start];

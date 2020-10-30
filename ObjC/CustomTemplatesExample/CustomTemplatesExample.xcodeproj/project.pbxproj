@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1EAD7B5EBD7845D85B78CF95 /* Pods_CustomTemplatesExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5227F9D4CEA812B0361CF7F /* Pods_CustomTemplatesExample.framework */; };
+		6A5085C3254C4F590041116E /* LPAdsTrackingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5085BE254C4F590041116E /* LPAdsTrackingManager.m */; };
+		6A5085C4254C4F590041116E /* LPAdsTrackingActionTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5085C1254C4F590041116E /* LPAdsTrackingActionTemplate.m */; };
+		6A5085C5254C4F590041116E /* LPAdsAskToAskMessageTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5085C2254C4F590041116E /* LPAdsAskToAskMessageTemplate.m */; };
 		6AFCF3852520C44300846A34 /* SliderMessageTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFCF3842520C44300846A34 /* SliderMessageTemplate.m */; };
 		6AFCF3882520C55100846A34 /* SliderMessageTemplateStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFCF3872520C55100846A34 /* SliderMessageTemplateStoryboard.storyboard */; };
 		6AFCF3902520CABF00846A34 /* SlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFCF38F2520CABF00846A34 /* SlideViewController.m */; };
@@ -24,6 +27,12 @@
 
 /* Begin PBXFileReference section */
 		3C4A1DA4D867854E62859133 /* Pods-CustomTemplatesExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomTemplatesExample.debug.xcconfig"; path = "Target Support Files/Pods-CustomTemplatesExample/Pods-CustomTemplatesExample.debug.xcconfig"; sourceTree = "<group>"; };
+		6A5085BD254C4F590041116E /* LPAdsAskToAskMessageTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPAdsAskToAskMessageTemplate.h; sourceTree = "<group>"; };
+		6A5085BE254C4F590041116E /* LPAdsTrackingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAdsTrackingManager.m; sourceTree = "<group>"; };
+		6A5085BF254C4F590041116E /* LPAdsTrackingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPAdsTrackingManager.h; sourceTree = "<group>"; };
+		6A5085C0254C4F590041116E /* LPAdsTrackingActionTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPAdsTrackingActionTemplate.h; sourceTree = "<group>"; };
+		6A5085C1254C4F590041116E /* LPAdsTrackingActionTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAdsTrackingActionTemplate.m; sourceTree = "<group>"; };
+		6A5085C2254C4F590041116E /* LPAdsAskToAskMessageTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAdsAskToAskMessageTemplate.m; sourceTree = "<group>"; };
 		6AFCF3832520C44300846A34 /* SliderMessageTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SliderMessageTemplate.h; sourceTree = "<group>"; };
 		6AFCF3842520C44300846A34 /* SliderMessageTemplate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SliderMessageTemplate.m; sourceTree = "<group>"; };
 		6AFCF3872520C55100846A34 /* SliderMessageTemplateStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SliderMessageTemplateStoryboard.storyboard; sourceTree = "<group>"; };
@@ -78,6 +87,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6A5085BC254C4F3E0041116E /* AdsTracking */ = {
+			isa = PBXGroup;
+			children = (
+				6A5085BD254C4F590041116E /* LPAdsAskToAskMessageTemplate.h */,
+				6A5085C2254C4F590041116E /* LPAdsAskToAskMessageTemplate.m */,
+				6A5085C0254C4F590041116E /* LPAdsTrackingActionTemplate.h */,
+				6A5085C1254C4F590041116E /* LPAdsTrackingActionTemplate.m */,
+				6A5085BF254C4F590041116E /* LPAdsTrackingManager.h */,
+				6A5085BE254C4F590041116E /* LPAdsTrackingManager.m */,
+			);
+			path = AdsTracking;
+			sourceTree = "<group>";
+		};
 		6AFCF3822520C41300846A34 /* SliderTemplate */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +135,7 @@
 		E7774C8D24938FC600C1FCCE /* CustomTemplatesExample */ = {
 			isa = PBXGroup;
 			children = (
+				6A5085BC254C4F3E0041116E /* AdsTracking */,
 				6AFCF3822520C41300846A34 /* SliderTemplate */,
 				E7774CB52499118600C1FCCE /* AlertWith3Buttons */,
 				E7774C8E24938FC600C1FCCE /* AppDelegate.h */,
@@ -257,9 +280,12 @@
 				E7774C9624938FC600C1FCCE /* ViewController.m in Sources */,
 				E7774C9024938FC600C1FCCE /* AppDelegate.m in Sources */,
 				E7774CA92493902C00C1FCCE /* AlertWith3Buttons.m in Sources */,
+				6A5085C4254C4F590041116E /* LPAdsTrackingActionTemplate.m in Sources */,
 				E7774CA124938FCA00C1FCCE /* main.m in Sources */,
+				6A5085C5254C4F590041116E /* LPAdsAskToAskMessageTemplate.m in Sources */,
 				E7774C9324938FC600C1FCCE /* SceneDelegate.m in Sources */,
 				6AFCF3902520CABF00846A34 /* SlideViewController.m in Sources */,
+				6A5085C3254C4F590041116E /* LPAdsTrackingManager.m in Sources */,
 				6AFCF3952520CBF500846A34 /* SliderViewController.m in Sources */,
 				6AFCF3852520C44300846A34 /* SliderMessageTemplate.m in Sources */,
 			);
