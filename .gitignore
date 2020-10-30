@@ -75,6 +75,7 @@ Pods/
 
 ## Custom
 
+.DS_Store
 Release
 Podfile.lock
 DerivedData/
