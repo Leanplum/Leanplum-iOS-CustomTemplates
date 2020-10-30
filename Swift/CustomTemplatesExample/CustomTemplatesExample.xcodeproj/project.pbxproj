@@ -11,6 +11,9 @@
 		6A406C53252CB6400062E76D /* SliderMessageTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A406C52252CB6400062E76D /* SliderMessageTemplate.swift */; };
 		6A406C56252CB6890062E76D /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A406C55252CB6890062E76D /* SliderViewController.swift */; };
 		6A406C59252CB6970062E76D /* SlideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A406C58252CB6970062E76D /* SlideViewController.swift */; };
+		6A5085D2254C77170041116E /* AdsAskToAskMessageTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5085CF254C77170041116E /* AdsAskToAskMessageTemplate.swift */; };
+		6A5085D3254C77170041116E /* AdsTrackingActionTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5085D0254C77170041116E /* AdsTrackingActionTemplate.swift */; };
+		6A5085D4254C77170041116E /* AdsTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5085D1254C77170041116E /* AdsTrackingManager.swift */; };
 		764A945815D447756521D251 /* Pods_CustomTemplatesExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C1222D17187AC4F94C3EA6 /* Pods_CustomTemplatesExample.framework */; };
 		E741DC9224B4854A0045C732 /* Leanplum-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E741DC9124B4854A0045C732 /* Leanplum-Info.plist */; };
 		E76EF1872487F46700AAB561 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76EF1862487F46700AAB561 /* AppDelegate.swift */; };
@@ -27,6 +30,9 @@
 		6A406C52252CB6400062E76D /* SliderMessageTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderMessageTemplate.swift; sourceTree = "<group>"; };
 		6A406C55252CB6890062E76D /* SliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
 		6A406C58252CB6970062E76D /* SlideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideViewController.swift; sourceTree = "<group>"; };
+		6A5085CF254C77170041116E /* AdsAskToAskMessageTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsAskToAskMessageTemplate.swift; sourceTree = "<group>"; };
+		6A5085D0254C77170041116E /* AdsTrackingActionTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsTrackingActionTemplate.swift; sourceTree = "<group>"; };
+		6A5085D1254C77170041116E /* AdsTrackingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsTrackingManager.swift; sourceTree = "<group>"; };
 		95C1222D17187AC4F94C3EA6 /* Pods_CustomTemplatesExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomTemplatesExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E741DC9124B4854A0045C732 /* Leanplum-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Leanplum-Info.plist"; sourceTree = "<group>"; };
 		E76EF1832487F46700AAB561 /* CustomTemplatesExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomTemplatesExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +94,16 @@
 			path = Slider;
 			sourceTree = "<group>";
 		};
+		6A5085CD254C76CF0041116E /* AdsTracking */ = {
+			isa = PBXGroup;
+			children = (
+				6A5085CF254C77170041116E /* AdsAskToAskMessageTemplate.swift */,
+				6A5085D0254C77170041116E /* AdsTrackingActionTemplate.swift */,
+				6A5085D1254C77170041116E /* AdsTrackingManager.swift */,
+			);
+			path = AdsTracking;
+			sourceTree = "<group>";
+		};
 		E76EF17A2487F46700AAB561 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +125,7 @@
 		E76EF1852487F46700AAB561 /* CustomTemplatesExample */ = {
 			isa = PBXGroup;
 			children = (
+				6A5085CD254C76CF0041116E /* AdsTracking */,
 				6A406C4C252CB5F60062E76D /* Slider */,
 				6A406C4B252CB5E90062E76D /* AlertWith3Buttons */,
 				E76EF1862487F46700AAB561 /* AppDelegate.swift */,
@@ -241,10 +258,13 @@
 			files = (
 				E76EF1892487F46700AAB561 /* ViewController.swift in Sources */,
 				6A406C56252CB6890062E76D /* SliderViewController.swift in Sources */,
+				6A5085D4254C77170041116E /* AdsTrackingManager.swift in Sources */,
 				6A406C59252CB6970062E76D /* SlideViewController.swift in Sources */,
 				E76EF1872487F46700AAB561 /* AppDelegate.swift in Sources */,
 				6A406C53252CB6400062E76D /* SliderMessageTemplate.swift in Sources */,
 				E76EF1992487F77200AAB561 /* AlertWith3Buttons.swift in Sources */,
+				6A5085D2254C77170041116E /* AdsAskToAskMessageTemplate.swift in Sources */,
+				6A5085D3254C77170041116E /* AdsTrackingActionTemplate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

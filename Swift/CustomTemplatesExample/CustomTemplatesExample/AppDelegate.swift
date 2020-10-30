@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AlertWith3Buttons.defineAction()
         SliderMessageTemplate.defineAction()
+        AdsAskToAskMessageTemplate.defineAction()
+        AdsTrackingActionTemplate.defineAction()
 
         Leanplum.setVerboseLoggingInDevelopmentMode(true)
         Leanplum.start()
