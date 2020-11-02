@@ -45,6 +45,8 @@ Milestones:
 
 ### Ads Tracking
 
+Documentation on the Ads Tracking templates can be found in the [Leanplum Docs][11].
+
 [1]: https://docs.leanplum.com/v1/reference#section-i-os-custom-templates
 [2]: /Assets/sync.png
 [3]: /Assets/templates_icons.png
@@ -55,3 +57,4 @@ Milestones:
 [8]: /Assets/slider_composer.png
 [9]: /Assets/slider.gif
 [10]: /Assets/slider_milestones.png
+[11]: https://docs.leanplum.com/changelog/ios-14-ads-tracking-message-templates
