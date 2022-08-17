@@ -27,14 +27,18 @@ class AdsTrackingActionTemplate: LPMessageTemplateProtocol {
             if #available(iOS 14, *) {
                 if ATTrackingManager.trackingAuthorizationStatus == ATTrackingManager.AuthorizationStatus.notDetermined {
                     AdsTrackingManager.showNativeAdsPrompt()
-                    context.actionDismissed()
+                    DispatchQueue.main.async {
+                        context.actionDismissed()
+                    }
                     return true
                 }
                 // Open the App Settings if the user has already declined tracking
                 if ATTrackingManager.trackingAuthorizationStatus == ATTrackingManager.AuthorizationStatus.denied,
                    let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    context.actionDismissed()
+                    DispatchQueue.main.async {
+                        context.actionDismissed()
+                    }
                     return true
                 }
             }
