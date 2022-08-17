@@ -3,7 +3,7 @@
 //  CustomTemplatesExample
 //
 //  Created by Nikola Zagorchev on 6.10.20.
-//  Copyright © 2020 Nikola Zagorchev. All rights reserved.
+//  Copyright © 2022 Nikola Zagorchev. All rights reserved.
 //
 
 import Leanplum
@@ -21,14 +21,28 @@ class SliderMessageTemplate {
     
     // MARK: Definition
     static func defineAction() {
-        let messageResponder: LeanplumActionBlock = { (context: ActionContext) in
-            var topController = UIApplication.shared.keyWindow!.rootViewController
-            while (topController?.presentedViewController != nil) {
-                topController = topController?.presentedViewController;
-            }
-            topController?.present(SliderMessageTemplate.viewControllerWithContext(with: context), animated: true, completion: nil)
+        var viewController: UIViewController?
+        
+        let present: LeanplumActionBlock = { (context: ActionContext) in
+            viewController = self.viewControllerWithContext(with: context)
+            
+            guard let viewController = viewController,
+                  let topViewController = topViewController else { return false }
+            
+            topViewController.present(viewController, animated: true, completion: nil)
             return true
-        };
+        }
+        
+        let dismiss: LeanplumActionBlock = { (context: ActionContext) in
+            if let viewController = viewController {
+                viewController.dismiss(animated: true, completion: {
+                    context.actionDismissed()
+                })
+                return true
+            }
+            
+            return false
+        }
         
         let titles = ["Personalize every message", "Mobile App & Website Inbox Messages"]
         
@@ -42,7 +56,8 @@ class SliderMessageTemplate {
                               args: [ActionArg.init(name: SliderMessageTemplate.TitleColorArg, color: UIColor.blue),
                                      ActionArg.init(name: SliderMessageTemplate.TitlesArg, dictionary: dict),
                                      ActionArg.init(name: SliderMessageTemplate.ImagesArg, dictionary: [:])],
-                              completion: messageResponder)
+                              present: present,
+                              dismiss: dismiss)
     }
     
     // MARK: Presentation
@@ -64,5 +79,13 @@ class SliderMessageTemplate {
         vc.slideTitleColor = context.color(name: TitleColorArg)
         
         return vc
+    }
+    
+    class var topViewController: UIViewController? {
+        var topController = UIApplication.shared.keyWindow!.rootViewController
+        while (topController?.presentedViewController != nil) {
+            topController = topController?.presentedViewController;
+        }
+        return topController
     }
 }

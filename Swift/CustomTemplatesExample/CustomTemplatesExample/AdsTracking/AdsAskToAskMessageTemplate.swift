@@ -3,7 +3,7 @@
 //  CustomTemplatesExample
 //
 //  Created by Nikola Zagorchev on 18.09.20.
-//  Copyright © 2020 Leanplum. All rights reserved.
+//  Copyright © 2022 Leanplum. All rights reserved.
 //
 
 import Foundation
@@ -26,7 +26,7 @@ class AdsAskToAskMessageTemplate: LPMessageTemplateProtocol {
         and on partner apps.\nTap OK to enable personalized ads.
         """
         
-        let bundleDisplayName = Bundle.main.infoDictionary!["CFBundleDisplayName"] as? String
+        let bundleDisplayName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String
         let appName = bundleDisplayName ?? Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
         
         let defaultButtonTextColor = UIColor.init(red: 0, green: 0.478431, blue: 1, alpha: 1)
@@ -52,20 +52,23 @@ class AdsAskToAskMessageTemplate: LPMessageTemplateProtocol {
                                 ActionArg(name:LPMT_ARG_CANCEL_BUTTON_TEXT_COLOR, color:UIColor.gray),
                                 ActionArg(name:LPMT_ARG_LAYOUT_WIDTH, number:width),
                                 ActionArg(name:LPMT_ARG_LAYOUT_HEIGHT, number:height)
-                              ], completion: { context in
+                              ], present: { context in
                                 if (context.hasMissingFiles()) {
-                                    return false;
+                                    return false
                                 }
                                 
                                 let template = AdsAskToAskMessageTemplate(context: context)
                                 template.context = context
                                 if #available(iOS 14, *),
                                    ATTrackingManager.trackingAuthorizationStatus == ATTrackingManager.AuthorizationStatus.notDetermined {
-                                    template.showPrePermissionMessage()
-                                    return true
+                                    // Action dismissed is handled by LPPopupViewController
+                                    return template.showPrePermissionMessage()
                                 }
                                 return false
-                              })
+                              }) { _ in
+                                  // Do not dismiss this message on demand due the message importance
+                                  return false
+                              }
     }
     
     func viewControllerWithContext(context:ActionContext) -> LPPopupViewController? {
@@ -79,11 +82,12 @@ class AdsAskToAskMessageTemplate: LPMessageTemplateProtocol {
             AdsTrackingManager.showNativeAdsPrompt()
         }
         
-        return viewController;
+        return viewController
     }
     
-    func showPrePermissionMessage() {
-        guard let viewController = self.viewControllerWithContext(context: self.context) else { return }
+    func showPrePermissionMessage() -> Bool {
+        guard let viewController = self.viewControllerWithContext(context: self.context) else { return false }
         LPMessageTemplateUtilities.presentOverVisible(viewController)
+        return true
     }
 }
