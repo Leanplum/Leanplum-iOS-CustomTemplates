@@ -3,7 +3,7 @@
 //  CustomTemplatesExample
 //
 //  Created by Nikola Zagorchev on 3.06.20.
-//  Copyright © 2020 Nikola Zagorchev. All rights reserved.
+//  Copyright © 2022 Nikola Zagorchev. All rights reserved.
 //
 
 import UIKit
@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AdsAskToAskMessageTemplate.defineAction()
         AdsTrackingActionTemplate.defineAction()
 
-        Leanplum.setVerboseLoggingInDevelopmentMode(true)
+        Leanplum.setLogLevel(.debug)
         Leanplum.start()
 
         return true
@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func overrideTemplates() {
         MessageTemplates.sharedTemplates()
         // Redefining the action/message with the same name overrides it.
-        Leanplum.defineAction(name: "Open URL", kind: .message, args: [ActionArg.init(name: "URL", string: "http://www.leanplum.com")], completion: { (ctx) -> Bool in
+        Leanplum.defineAction(name: "Open URL", kind: .message, args: [ActionArg.init(name: "URL", string: "http://www.leanplum.com")], present: { (ctx) -> Bool in
             print("Overridden Open URL")
             print(ctx.string(name: "URL")!)
             return true

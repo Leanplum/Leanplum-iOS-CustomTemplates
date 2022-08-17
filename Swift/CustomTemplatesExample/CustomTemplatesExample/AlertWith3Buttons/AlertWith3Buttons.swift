@@ -3,7 +3,7 @@
 //  CustomTemplates
 //
 //  Created by Leanplum on 9.04.20.
-//  Copyright © 2020 Leanplum. All rights reserved.
+//  Copyright © 2022 Leanplum. All rights reserved.
 //
 
 import UIKit
@@ -30,15 +30,27 @@ class AlertWith3Buttons {
     
     // MARK: Definition
     static func defineAction() {
+        var alertViewController: UIViewController?
+        
         //#### example Define message responder, executed when the message is shown
-        let messageResponder: LeanplumActionBlock = { (context: ActionContext) in
+        let presentHandler: LeanplumActionBlock = { (context: ActionContext) in
             //#### example Present the in-app message in the desired way
             //#### example Dispalying simple Alert view with 3 buttons over top view controller
-            if var topController: UIViewController = UIApplication.shared.keyWindow?.rootViewController {
-                while let presentedViewController = topController.presentedViewController {
-                    topController = presentedViewController
+            
+            alertViewController = self.viewController(with: context)
+            
+            guard let alertViewController = alertViewController,
+                  let topViewController = topViewController else { return false }
+            
+            topViewController.present(alertViewController, animated: true, completion: nil)
+            return true
+        }
+        
+        let dismissHandler: LeanplumActionBlock = { (context: ActionContext) in
+            if let alertViewController = alertViewController {
+                alertViewController.dismiss(animated: true) {
+                    context.actionDismissed()
                 }
-                topController.present(AlertWith3Buttons.viewController(with: context), animated: true, completion: nil)
                 return true
             }
             return false
@@ -57,7 +69,8 @@ class AlertWith3Buttons {
                                 ActionArg.init(name: AcceptActionArg, action: nil),
                                 ActionArg.init(name: CancelActionArg, action: nil),
                                 ActionArg.init(name: LaterActionArg, action: nil)],
-                              completion: messageResponder)
+                              present: presentHandler,
+                              dismiss: dismissHandler)
     }
     
     // MARK: Presentation
@@ -82,5 +95,13 @@ class AlertWith3Buttons {
         alert.addAction(maybe)
         
         return alert
+    }
+    
+    class var topViewController: UIViewController? {
+        var topController = UIApplication.shared.keyWindow!.rootViewController
+        while (topController?.presentedViewController != nil) {
+            topController = topController?.presentedViewController;
+        }
+        return topController
     }
 }

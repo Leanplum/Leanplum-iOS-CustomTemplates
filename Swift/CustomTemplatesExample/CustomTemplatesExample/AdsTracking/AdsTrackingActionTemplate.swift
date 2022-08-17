@@ -3,7 +3,7 @@
 //  CustomTemplatesExample
 //
 //  Created by Nikola Zagorchev on 16.10.20.
-//  Copyright © 2020 Leanplum. All rights reserved.
+//  Copyright © 2022 Leanplum. All rights reserved.
 //
 
 import Foundation
@@ -23,20 +23,28 @@ class AdsTrackingActionTemplate: LPMessageTemplateProtocol {
         
         Leanplum.defineAction(name: name, kind: .action,
                               args: [],
-                              completion: { context in
-                                if #available(iOS 14, *) {
-                                    if ATTrackingManager.trackingAuthorizationStatus == ATTrackingManager.AuthorizationStatus.notDetermined {
-                                        AdsTrackingManager.showNativeAdsPrompt()
-                                        return true
-                                    }
-                                    // Open the App Settings if the user has already declined tracking
-                                    if ATTrackingManager.trackingAuthorizationStatus == ATTrackingManager.AuthorizationStatus.denied,
-                                       let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
-                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                                        return true
-                                    }
-                                }
-                                return false
-        })
+                              present: { context in
+            if #available(iOS 14, *) {
+                if ATTrackingManager.trackingAuthorizationStatus == ATTrackingManager.AuthorizationStatus.notDetermined {
+                    AdsTrackingManager.showNativeAdsPrompt()
+                    DispatchQueue.main.async {
+                        context.actionDismissed()
+                    }
+                    return true
+                }
+                // Open the App Settings if the user has already declined tracking
+                if ATTrackingManager.trackingAuthorizationStatus == ATTrackingManager.AuthorizationStatus.denied,
+                   let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    DispatchQueue.main.async {
+                        context.actionDismissed()
+                    }
+                    return true
+                }
+            }
+            return false
+        }) { context in
+            return false
+        }
     }
 }
