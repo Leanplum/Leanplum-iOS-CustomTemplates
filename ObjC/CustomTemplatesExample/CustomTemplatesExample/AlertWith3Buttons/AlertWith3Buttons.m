@@ -3,12 +3,12 @@
 //  CustomTemplatesExample
 //
 //  Created by Leanplum on 9.04.20.
-//  Copyright © 2020 Leanplum. All rights reserved.
+//  Copyright © 2022 Leanplum. All rights reserved.
 //
 
 #import "AlertWith3Buttons.h"
 #import "UIKit/UIKit.h"
-#import "Leanplum/Leanplum.h"
+#import <Leanplum/LPActionContext.h>
 
 @implementation AlertWith3Buttons
 
@@ -31,8 +31,10 @@ static NSString *const LaterVal = @"Ask Me Later";
 
 #pragma mark - Definition
 + (void)defineAction {
+    __block UIViewController *alertController;
+    
     //#### example Define message responder, executed when the message is shown
-    BOOL (^messageResponder)(LPActionContext *) = ^(LPActionContext *context) {
+    BOOL (^presentHandler)(LPActionContext *) = ^(LPActionContext *context) {
         //#### example Message files are missing, skip
         if ([context hasMissingFiles]) {
             return NO;
@@ -40,11 +42,11 @@ static NSString *const LaterVal = @"Ask Me Later";
         @try {
             //#### example Present the in-app message in the desired way
             //#### example Dispalying simple Alert view with 3 buttons over top view controller
-            UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
-            while (topController.presentedViewController) {
-                topController = topController.presentedViewController;
-            }
-            [topController presentViewController:[AlertWith3Buttons viewControllerWithContext:context] animated:YES completion:nil];
+            UIViewController *topController = [self topViewController];
+            
+            alertController = [AlertWith3Buttons viewControllerWithContext:context];
+            
+            [topController presentViewController:alertController animated:YES completion:nil];
             return YES;
         }
         @catch (NSException *exception) {
@@ -54,21 +56,32 @@ static NSString *const LaterVal = @"Ask Me Later";
         }
     };
     
+    BOOL (^dismissHandler)(LPActionContext *) = ^(LPActionContext *context) {
+        if (alertController) {
+            [alertController dismissViewControllerAnimated:YES completion:^{
+                [context actionDismissed];
+            }];
+            return YES;
+        }
+        return NO;
+    };
     
     [Leanplum defineAction:Name
                     ofKind: kLeanplumActionKindMessage | kLeanplumActionKindAction
-             //#### example Define the arguments for the template, configurable from the Dashboard
+     //#### example Define the arguments for the template, configurable from the Dashboard
              withArguments:@[
-                 [LPActionArg argNamed:TitleArg withString:TitleVal],
-                 [LPActionArg argNamed:MessageArg withString:MessageVal],
-                 [LPActionArg argNamed:AcceptStr withString:AcceptStr],
-                 [LPActionArg argNamed:CancelStr withString:CancelStr],
-                 [LPActionArg argNamed:LaterArg withString:LaterVal],
-                 [LPActionArg argNamed:AcceptActionArg withAction:nil],
-                 [LPActionArg argNamed:CancelActionArg withAction:nil],
-                 [LPActionArg argNamed:LaterActionArg withAction:nil],
-             ]
-             withResponder:messageResponder];
+        [LPActionArg argNamed:TitleArg withString:TitleVal],
+        [LPActionArg argNamed:MessageArg withString:MessageVal],
+        [LPActionArg argNamed:AcceptStr withString:AcceptStr],
+        [LPActionArg argNamed:CancelStr withString:CancelStr],
+        [LPActionArg argNamed:LaterArg withString:LaterVal],
+        [LPActionArg argNamed:AcceptActionArg withAction:nil],
+        [LPActionArg argNamed:CancelActionArg withAction:nil],
+        [LPActionArg argNamed:LaterActionArg withAction:nil],
+    ]
+               withOptions:@{}
+            presentHandler:presentHandler
+            dismissHandler:dismissHandler];
 }
 
 #pragma mark - Presentation
@@ -92,5 +105,14 @@ static NSString *const LaterVal = @"Ask Me Later";
     }];
     [alert addAction:maybe];
     return alert;
+}
+
++ (UIViewController *)topViewController {
+    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (topController.presentedViewController) {
+        topController = topController.presentedViewController;
+    }
+    
+    return topController;
 }
 @end

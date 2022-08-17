@@ -7,5 +7,5 @@ target 'CustomTemplatesExample' do
 
   # Pods for CustomTemplatesExample
 #    pod 'Leanplum-iOS-SDK', :path => '/Users/zagorchev/Developer/Leanplum-iOS-SDK/Leanplum-iOS-SDK'
-pod 'Leanplum-iOS-SDK', '3.1.0'
+pod 'Leanplum-iOS-SDK', '5.0.0'
 end
