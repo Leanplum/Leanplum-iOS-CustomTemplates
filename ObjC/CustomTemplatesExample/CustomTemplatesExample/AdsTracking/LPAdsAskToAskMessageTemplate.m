@@ -3,7 +3,7 @@
 //  CustomTemplatesExample
 //
 //  Created by Nikola Zagorchev on 8.09.20.
-//  Copyright © 2020 Leanplum. All rights reserved.
+//  Copyright © 2022 Leanplum. All rights reserved.
 //
 
 #import <AdSupport/AdSupport.h>
@@ -54,7 +54,8 @@
                  [LPActionArg argNamed:LPMT_ARG_LAYOUT_HEIGHT
                             withNumber:@(LPMT_DEFAULT_CENTER_POPUP_HEIGHT)]
              ]
-             withResponder:^BOOL(LPActionContext *context) {
+               withOptions:@{}
+             presentHandler:^BOOL(LPActionContext *context) {
         if ([context hasMissingFiles]) {
             return NO;
         }
@@ -65,6 +66,7 @@
             if (@available(iOS 14, *)) {
                 // If desired, the App settings can be opened if the status is declined
                 if ([ATTrackingManager trackingAuthorizationStatus] == ATTrackingManagerAuthorizationStatusNotDetermined) {
+                    // Action dismissed is handled by LPPopupViewController
                     [template showPrePermissionMessage];
                     return YES;
                 }
@@ -74,6 +76,9 @@
             NSLog(@"%@: %@\n%@", name, exception, [exception callStackSymbols]);
             return NO;
         }
+    } dismissHandler:^BOOL(LPActionContext * _Nonnull context) {
+        // Do not dismiss this message on demand due the message importance
+        return NO;
     }];
 }
 
@@ -89,10 +94,9 @@
     return viewController;
 }
 
--(void)showPrePermissionMessage
+- (void)showPrePermissionMessage
 {
     UIViewController *viewController = [self viewControllerWithContext:self.context];
-
     [LPMessageTemplateUtilities presentOverVisible:viewController];
 }
 
